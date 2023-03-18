@@ -8,9 +8,9 @@ Todas las máquinas virtuales, tanto la plantilla de máquina virtual como las m
 
 Cada máquina virtual tendrá un ***número de puerto diferente***. 
 
-Los intervalos de puertos para las conexiones SSH son ***4980-4989*** y ***5000-6999***. 
+Los intervalos de puertos para las conexiones ***SSH*** son ***4980-4989*** y ***5000-6999***. 
 
-Los intervalos de puertos para las conexiones RDP son ***4990-4999*** y ***7000-8999***. 
+Los intervalos de puertos para las conexiones ***RDP*** son ***4990-4999*** y ***7000-8999***. 
 
 Para saber la IP pública del laboratorio, usamos el portal.
 
