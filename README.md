@@ -14,6 +14,13 @@ Los intervalos de puertos para las conexiones RDP son ***4990-4999*** y ***7000-
 
 Por consiguiente, es imperativo crear esas reglas en el FW del cliente para poder acceder a los labs.
 
-Para saber la IP pública del laboratorio, ejecutamos [este script](GetLabPublicIP.ps1)
+Para saber la IP pública del laboratorio, abrimos una terminal de PowerShell.
+
+Si no tenemos instalados los cmdlets para interactuar con los laboratorios, escribimos.
+```
+Install-Module Az.LabServices
+```
+
+ejecutamos [este script](GetLabPublicIP.ps1)
 
 
