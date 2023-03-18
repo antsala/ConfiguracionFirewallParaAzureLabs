@@ -1,3 +1,5 @@
+Install-Module Az.LabServices
+
 # Cargamos las variables con los valores del laboratorio apropiados.
 $ResourceGroupName = "AzureLabs"
 $LabName = "agq - programación java - álvaro"
@@ -6,7 +8,7 @@ $LabName = "agq - programación java - álvaro"
 Connect-AZAccount
 
 # Seleccionamos la subscripción.
-Select-AzContext "Ecosistema de aprendizaje"
+Set-AzContext -Subscription "Ecosistema de aprendizaje"
 
 $LabPublicIP = $null
 
