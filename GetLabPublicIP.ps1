@@ -2,7 +2,7 @@ Install-Module Az.LabServices
 
 # Cargamos las variables con los valores del laboratorio apropiados.
 $ResourceGroupName = "AzureLabs"
-$LabName = "fsierra/agq - programación java - álvaro"
+$LabName = "agq - programación java - álvaro"
 
 # Conectamos con el tenant.
 Connect-AZAccount
@@ -10,43 +10,20 @@ Connect-AZAccount
 # Seleccionamos la subscripción.
 Set-AzContext -Subscription "Ecosistema de aprendizaje"
 
-$LabPublicIP = $null
+# Inicia sesión en Azure PowerShell
+Connect-AzAccount
 
-$lab = Get-AzLabServicesLab -Name $LabName -ResourceGroupName $ResourceGroupName
-if (-not $lab) {
-    Write-Error "No he podido encontrar el laboratorio $($LabName) en el grupo de recursos $($ResourceGroupName)."
-}
+# Obtiene una lista de los laboratorios disponibles
+$lab = Get-AzLab -ResourceGroupName $ResourceGroupName -Name $LabName
 
-if ($lab.NetworkProfilePublicIPId) {
-    # Si el laboratorio está usando "advance networking".
-    # Tomamos la IP pública desde las propiedades de red.
-    $LabPublicIP = Get-AzResource -ResourceId $lab.NetworkProfilePublicIPId | `
-        Get-AzPublicIpAddress | `
-        Select-Object -expand IpAddress
-}
-else {
-    # Tomamos la primera VM del laboratorio, que suele ser la VM de plantilla.
-    # Si no hay plantilla, se coge la primera VM de alumno.
-    $vm = $lab | Get-AzLabServicesVM | Select-Object -First 1
+# Obtiene una lista de las máquinas virtuales en el laboratorio seleccionado
+$vm = Get-AzLabVM -Lab $lab
 
-    if ($vm) {
-        if ($vm.ConnectionProfileSshAuthority) {
-            $connectionAuthority = $vm.ConnectionProfileSshAuthority.Split(":")[0]
-        }
-        else {
-            $connectionAuthority = $vm.ConnectionProfileRdpAuthority.Split(":")[0]
-        }
-        $LabPublicIP = [System.Net.DNS]::GetHostByName($connectionAuthority).AddressList.IPAddressToString | `
-            Where-Object { $_ } | Select-Object -First 1
-    }
-}
+# Selecciona la máquina virtual de interés
+$vmSeleccionado = $vm | Where-Object { $_.Name -eq "nombre_de_la_maquina_virtual" }
 
-if ($LabPublicIP) {
-    Write-Output "La IP pública para el laboratorio $($lab.Name) es $LabPublicIP."
-}
-else {
-    Write-Error "El laboratorio debe publicarse para poder obtener su IP pública."
-}
+# Obtiene la dirección IP pública de la máquina virtual seleccionada
+$ipPublica = Get-AzPublicIpAddress -Name $vmSeleccionado.Name -ResourceGroupName $lab.ResourceGroupName
 
-
-
+# Muestra la dirección IP pública en la consola
+Write-Host "La dirección IP pública de la máquina virtual $($vmSeleccionado.Name) es $($ipPublica.IpAddress)"
