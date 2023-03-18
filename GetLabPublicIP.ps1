@@ -10,9 +10,6 @@ Connect-AZAccount
 # Seleccionamos la subscripción.
 Set-AzContext -Subscription "Ecosistema de aprendizaje"
 
-# Inicia sesión en Azure PowerShell
-Connect-AzAccount
-
 # Obtiene una lista de los laboratorios disponibles
 $lab = Get-AzLab -ResourceGroupName $ResourceGroupName -Name $LabName
 
