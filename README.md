@@ -18,4 +18,4 @@ Para saber la IP pública del laboratorio, usamos el portal.
 
 Para comunicar al cliente es mejor dar la ***IP*** que la DNS que genera Azure, que es de la forma ***ml-lab-b41bd8c5-fc48-48a4-8cfa-69afb4b660ff.northeurope.cloudapp.azure.com***, si se intenta escribir manualmente será un problema.
 
-Por consiguiente, es imperativo crear esas reglas en el FW del cliente para poder acceder a los labs.
+Por consiguiente, es imperativo crear esas reglas en el FW del cliente para que puedan acceder a los labs.
