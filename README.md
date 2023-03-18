@@ -31,17 +31,56 @@ Mostramos las subscripciones a las que tenemos acceso.
 Get-AzSubscription
 ```
 
-Anotamos el ***id*** y el ***TenantId*** de la subscripción deseada y lo almacenamos en variables.
+Seleccionamos la subscripción.
 ```
-$SubscriptionId = "<Poner el ***Id*** obtenido>"
+Select-AzContext "Ecosistema de aprendizaje"
+```
+Cargamos las variables con los valores del laboratorio apropiados.
+```
+$ResourceGroupName = "AzureLabs"
 ```
 ```
-$SubscriptionTenantId = "<Poner el ***TenantId*** obtenido>"
+$LabName = "agq - programación java - álvaro"
 ```
 
+ejecutamos este script.
+```
+$LabPublicIP = $null
 
+$lab = Get-AzLabServicesLab -Name $LabName -ResourceGroupName $ResourceGroupName
+if (-not $lab) {
+    Write-Error "Could find lab $($LabName) in resource group $($ResourceGroupName)."
+}
 
+if ($lab.NetworkProfilePublicIPId) {
+    #Lab is using advance networking
+    # Get public IP from networking properties
+    $LabPublicIP = Get-AzResource -ResourceId $lab.NetworkProfilePublicIPId | Get-AzPublicIpAddress | Select-Object -expand IpAddress
+}
+else {
+    #Get first VM from lab
+    # If customizable lab, this is the template VM
+    # If non-customizable lab, this is the first VM published.
+    $vm = $lab | Get-AzLabServicesVM | Select -First 1
 
-ejecutamos [este script](GetLabPublicIP.ps1)
+    if ($vm) {
+        if ($vm.ConnectionProfileSshAuthority) {
+            $connectionAuthority = $vm.ConnectionProfileSshAuthority.Split(":")[0]
+        }
+        else {
+            $connectionAuthority = $vm.ConnectionProfileRdpAuthority.Split(":")[0]
+        }
+        $LabPublicIP = [System.Net.DNS]::GetHostByName($connectionAuthority).AddressList.IPAddressToString | Where-Object { $_ } | Select -First 1
+
+    }
+}
+
+if ($LabPublicIP) {
+    Write-Output "Public IP for $($lab.Name) is $LabPublicIP."
+}
+else {
+    Write-Error "Lab must be published to get public IP address."
+}
+```
 
 

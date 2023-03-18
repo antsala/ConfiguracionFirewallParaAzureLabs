@@ -1,8 +1,4 @@
-$ResourceGroupName = "MyResourceGroup"
-$LabName = "MyLab"
 $LabPublicIP = $null
-
-Connect-AZAccount
 
 $lab = Get-AzLabServicesLab -Name $LabName -ResourceGroupName $ResourceGroupName
 if (-not $lab) {
