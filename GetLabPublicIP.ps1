@@ -1,20 +1,31 @@
+# Cargamos las variables con los valores del laboratorio apropiados.
+$ResourceGroupName = "AzureLabs"
+$LabName = "agq - programación java - álvaro"
+
+# Conectamos con el tenant.
+Connect-AZAccount
+
+# Seleccionamos la subscripción.
+Select-AzContext "Ecosistema de aprendizaje"
+
 $LabPublicIP = $null
 
 $lab = Get-AzLabServicesLab -Name $LabName -ResourceGroupName $ResourceGroupName
 if (-not $lab) {
-    Write-Error "Could find lab $($LabName) in resource group $($ResourceGroupName)."
+    Write-Error "No he podido encontrar el laboratorio $($LabName) en el grupo de recursos $($ResourceGroupName)."
 }
 
 if ($lab.NetworkProfilePublicIPId) {
-    #Lab is using advance networking
-    # Get public IP from networking properties
-    $LabPublicIP = Get-AzResource -ResourceId $lab.NetworkProfilePublicIPId | Get-AzPublicIpAddress | Select-Object -expand IpAddress
+    # Si el laboratorio está usando "advance networking".
+    # Tomamos la IP pública desde las propiedades de red.
+    $LabPublicIP = Get-AzResource -ResourceId $lab.NetworkProfilePublicIPId | `
+        Get-AzPublicIpAddress | `
+        Select-Object -expand IpAddress
 }
 else {
-    #Get first VM from lab
-    # If customizable lab, this is the template VM
-    # If non-customizable lab, this is the first VM published.
-    $vm = $lab | Get-AzLabServicesVM | Select -First 1
+    # Tomamos la primera VM del laboratorio, que suele ser la VM de plantilla.
+    # Si no hay plantilla, se coge la primera VM de alumno.
+    $vm = $lab | Get-AzLabServicesVM | Select-Object -First 1
 
     if ($vm) {
         if ($vm.ConnectionProfileSshAuthority) {
@@ -23,14 +34,17 @@ else {
         else {
             $connectionAuthority = $vm.ConnectionProfileRdpAuthority.Split(":")[0]
         }
-        $LabPublicIP = [System.Net.DNS]::GetHostByName($connectionAuthority).AddressList.IPAddressToString | Where-Object { $_ } | Select -First 1
-
+        $LabPublicIP = [System.Net.DNS]::GetHostByName($connectionAuthority).AddressList.IPAddressToString | `
+            Where-Object { $_ } | Select-Object -First 1
     }
 }
 
 if ($LabPublicIP) {
-    Write-Output "Public IP for $($lab.Name) is $LabPublicIP."
+    Write-Output "La IP pública para el laboratorio $($lab.Name) es $LabPublicIP."
 }
 else {
-    Write-Error "Lab must be published to get public IP address."
+    Write-Error "El laboratorio debe publicarse para poder obtener su IP pública."
 }
+
+
+
