@@ -21,6 +21,17 @@ Si no tenemos instalados los cmdlets para interactuar con los laboratorios, escr
 Install-Module Az.LabServices
 ```
 
+A continuación conectamos con el tenant.
+```
+Connect-AZAccount
+```
+
+Mostramos las subscripciones a las que tenemos acceso.
+```
+Get-AzContext
+```
+
+
 ejecutamos [este script](GetLabPublicIP.ps1)
 
 
