@@ -33,10 +33,10 @@ Get-AzSubscription
 
 Anotamos el ***id*** y el ***TenantId*** de la subscripción deseada y lo almacenamos en variables.
 ```
-$SubscriptionId = <Poner el ***Id*** obtenido>
+$SubscriptionId = "<Poner el ***Id*** obtenido>"
 ```
 ```
-$SubscriptionTenantId = <Poner el ***TenantId*** obtenido>
+$SubscriptionTenantId = "<Poner el ***TenantId*** obtenido>"
 ```
 
 
