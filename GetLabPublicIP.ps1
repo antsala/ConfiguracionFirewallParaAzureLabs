@@ -2,7 +2,7 @@ Install-Module Az.LabServices
 
 # Cargamos las variables con los valores del laboratorio apropiados.
 $ResourceGroupName = "AzureLabs"
-$LabName = "agq - programación java - álvaro"
+$LabName = "fsierra/agq - programación java - álvaro"
 
 # Conectamos con el tenant.
 Connect-AZAccount
