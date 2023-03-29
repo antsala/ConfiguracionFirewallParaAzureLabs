@@ -4,6 +4,14 @@ Dado que Azure Lab Services se ejecuta en la nube pública, es posible que se ne
 
 Cada laboratorio usa ***una sola*** dirección IP pública y ***varios*** puertos. 
 
+## Si se usa una cuenta de laboratorio.
+
+Esta es la opción actualmente usada por la cuenta de laboratorio ***fsierra***.
+
+Cada laboratorio usa una sola dirección IP pública y varios puertos. Todas las máquinas virtuales, tanto la plantilla de máquina virtual como las máquinas virtuales de estudiantes, ***usarán esta dirección IP pública***. La dirección IP pública no cambiará durante la vida del laboratorio. Cada máquina virtual tendrá un número de puerto diferente. El rango de los números de puerto es ***49152 - 65535***. 
+
+## Si se usa un plan de laboratorio.
+
 Todas las máquinas virtuales, tanto la plantilla de máquina virtual como las máquinas virtuales de estudiantes, ***usarán esta dirección IP pública***. La dirección IP pública no cambiará durante la vida del laboratorio. 
 
 Cada máquina virtual tendrá un ***número de puerto diferente***. 
@@ -11,6 +19,9 @@ Cada máquina virtual tendrá un ***número de puerto diferente***.
 Los intervalos de puertos para las conexiones ***SSH*** son ***4980-4989*** y ***5000-6999***. 
 
 Los intervalos de puertos para las conexiones ***RDP*** son ***4990-4999*** y ***7000-8999***. 
+
+
+
 
 Para saber la IP pública del laboratorio, usamos el portal.
 
