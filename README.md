@@ -12,9 +12,9 @@ Cada laboratorio usa una sola dirección IP pública y varios puertos. Todas las
 
 ## Si se usa un plan de laboratorio.
 
-El plan de laboratorio es ***AvanteLabPla***. 
+El plan de laboratorio es ***AvanteLabPlan***. 
 
-Extrañamente la interfaz gráfica no dispone de la capacidad de mostrar la IP pública del laboratorio, por lo que se deberá obtener ejecutando el script llamado ***Get-LabPublicIP.ps1***.
+Extrañamente la interfaz gráfica no dispone de la capacidad de mostrar la IP pública del laboratorio, por lo que se deberá obtener ejecutando [Este script](Get-LabPublicIP.ps1).
 
 
 Todas las máquinas virtuales, tanto la plantilla de máquina virtual como las máquinas virtuales de estudiantes, ***usarán esta dirección IP pública***. La dirección IP pública no cambiará durante la vida del laboratorio. 
