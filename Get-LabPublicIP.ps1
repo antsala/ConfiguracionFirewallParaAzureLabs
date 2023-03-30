@@ -39,9 +39,6 @@ else {
 
 if ($LabPublicIP) {
     Write-Output "Public IP for $($lab.Name) is $LabPublicIP."
-    Write-Output "Mensaje para el cliente:"
-    Write-Output "Permitir las conexiones salientes hacia la IP $LabPublicIP para los protocolos RDP y SSH hacia los rangos de puertos siguientes:"
-    Write-Output "4980-4989, 5000-6999, y 7000-8999"
 }
 else {
     Write-Error "El laboratorio debe publicarse para obtener la IP pública."

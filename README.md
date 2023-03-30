@@ -26,12 +26,6 @@ Los intervalos de puertos para las conexiones ***SSH*** son ***4980-4989*** y **
 Los intervalos de puertos para las conexiones ***RDP*** son ***4990-4999*** y ***7000-8999***. 
 
 
-Para saber la IP pública del laboratorio, usamos el portal.
-
-![IP](./img/202303181846.png)
-
-Para comunicar al cliente es mejor dar la ***IP*** que la DNS que genera Azure, que es de la forma ***ml-lab-b41bd8c5-fc48-48a4-8cfa-69afb4b660ff.northeurope.cloudapp.azure.com***, si se intenta escribir manualmente será un problema.
-
 Por consiguiente, es imperativo crear esas reglas en el FW del cliente para que puedan acceder a los labs.
 
 ## Plantilla para notificar a los clientes (Versión cuenta de laboratorio)
@@ -39,9 +33,11 @@ Por consiguiente, es imperativo crear esas reglas en el FW del cliente para que 
 Se puede enviar un correo con el siguiente contenido.
 
 ```
-Cada laboratorio usa una sola dirección IP pública y varios puertos. Todas las máquinas virtuales de estudiantes usarán esta dirección IP pública. La dirección IP pública no cambiará durante la vida del laboratorio. Cada máquina virtual tendrá un número de puerto diferente asignado por el proveedor de laboratorio. 
+Todas las máquinas virtuales de los alumnos, usarán una única dirección IP pública. La dirección IP pública no cambiará durante la vida del laboratorio. Cada máquina virtual tendrá un número de puerto diferente. 
 
-En consecuencia, los alumnos desde sus equipos deberán poder conectar usando el protocolo RDP a la dirección IP ***<Poner aquí la IP>*** a los puertos de destino del rango 49152-65535
+Reglas a habilitar en su firewall.
 
-Les rogamos que se pongan en contacto con nosotros en fechas previas al inicio de la acción formativa para verificar la correcta conexión desde sus instalaciones.
+1) Permitir conexiones salientes para el protocolo RDP hacia la IP <Poner aquí la IP> y rango de puertos de destino 4990-4999 y 7000-8999. 
+
+2) Permitir conexiones salientes para el protocolo SSH hacia la IP <Poner aquí la IP> y rango de puertos de destino 4980-4989 y 5000-6999.
 ```
