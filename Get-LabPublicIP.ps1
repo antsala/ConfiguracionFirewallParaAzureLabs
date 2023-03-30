@@ -38,7 +38,7 @@ else {
 }
 
 if ($LabPublicIP) {
-    Write-Output "Public IP for $($lab.Name) is $LabPublicIP."
+    Write-Output "La IP Publica para $($lab.Name) es $LabPublicIP."
 }
 else {
     Write-Error "El laboratorio debe publicarse para obtener la IP pública."
