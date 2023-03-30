@@ -29,7 +29,7 @@ Para comunicar al cliente es mejor dar la ***IP*** que la DNS que genera Azure, 
 
 Por consiguiente, es imperativo crear esas reglas en el FW del cliente para que puedan acceder a los labs.
 
-## Plantilla para el notificar a los clientes.
+## Plantilla para notificar a los clientes (Versión cuenta de laboratorio)
 
 Se puede enviar un correo con el siguiente contenido.
 
