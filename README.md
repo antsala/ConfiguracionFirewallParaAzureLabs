@@ -6,11 +6,16 @@ Cada laboratorio usa ***una sola*** dirección IP pública y ***varios*** puerto
 
 ## Si se usa una cuenta de laboratorio.
 
-Esta es la opción actualmente usada por la cuenta de laboratorio ***fsierra***.
+Esta es la opción actualmente usada por la cuenta de laboratorio ***fsierra***, que será migrada a la de plan de laboratorio cuando finalicen los cursos planificados.
 
 Cada laboratorio usa una sola dirección IP pública y varios puertos. Todas las máquinas virtuales, tanto la plantilla de máquina virtual como las máquinas virtuales de estudiantes, ***usarán esta dirección IP pública***. La dirección IP pública no cambiará durante la vida del laboratorio. Cada máquina virtual tendrá un número de puerto diferente. El rango de los números de puerto es ***49152 - 65535***. 
 
 ## Si se usa un plan de laboratorio.
+
+El plan de laboratorio es ***AvanteLabPla***. 
+
+Extrañamente la interfaz gráfica no dispone de la capacidad de mostrar la IP pública del laboratorio, por lo que se deberá obtener ejecutando el script llamado ***Get-LabPublicIP.ps1***.
+
 
 Todas las máquinas virtuales, tanto la plantilla de máquina virtual como las máquinas virtuales de estudiantes, ***usarán esta dirección IP pública***. La dirección IP pública no cambiará durante la vida del laboratorio. 
 
